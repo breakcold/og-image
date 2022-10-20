@@ -144,6 +144,7 @@ const markdownOptions: DropdownOption[] = [
     { text: 'Markdown', value: '1' },
 ];
 
+
 const imageLightOptions: DropdownOption[] = [
     { text: 'Breakcold', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_long_ghost_white_bff488efc3.svg' },
     { text: 'Breakcold Icon Black Fill', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_fill_black_df61362f10.svg?width=173&height=173' },
