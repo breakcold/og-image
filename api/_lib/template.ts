@@ -1,10 +1,10 @@
+import {readFileSync} from 'fs';
+import {marked} from 'marked';
+import {sanitizeHtml} from './sanitizer';
+import {ParsedRequest} from './types';
 
-import { readFileSync } from 'fs';
-import { marked } from 'marked';
-import { sanitizeHtml } from './sanitizer';
-import { ParsedRequest } from './types';
 const twemoji = require('twemoji');
-const twOptions = { folder: 'svg', ext: '.svg' };
+const twOptions = {folder: 'svg', ext: '.svg'};
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
 const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString('base64');
@@ -12,14 +12,12 @@ const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('b
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
 function getCss(theme: string, fontSize: string) {
-    let background = 'white';
-    let foreground = 'black';
-    let radial = 'lightgray';
+    let background = '#29BC9B';
+    let foreground = 'white';
 
     if (theme === 'dark') {
-        background = 'black';
+        background = '#0070F3FF';
         foreground = 'white';
-        radial = 'dimgray';
     }
     return `
     @font-face {
@@ -44,14 +42,18 @@ function getCss(theme: string, fontSize: string) {
       }
 
     body {
-        background: ${background};
-        background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);
-        background-size: 100px 100px;
+        background-color: ${background};
         height: 100vh;
         display: flex;
         text-align: center;
         align-items: center;
         justify-content: center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 2px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+        background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     }
 
     code {
@@ -104,7 +106,7 @@ function getCss(theme: string, fontSize: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights } = parsedReq;
+    const {text, theme, md, fontSize, images, widths, heights} = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -118,20 +120,20 @@ export function getHtml(parsedReq: ParsedRequest) {
             <div class="spacer">
             <div class="logo-wrapper">
                 ${images.map((img, i) =>
-                    getPlusSign(i) + getImage(img, widths[i], heights[i])
-                ).join('')}
+        getPlusSign(i) + getImage(img, widths[i], heights[i])
+    ).join('')}
             </div>
             <div class="spacer">
             <div class="heading">${emojify(
-                md ? marked(text) : sanitizeHtml(text)
-            )}
+        md ? marked(text) : sanitizeHtml(text)
+    )}
             </div>
         </div>
     </body>
 </html>`;
 }
 
-function getImage(src: string, width ='auto', height = '225') {
+function getImage(src: string, width = 'auto', height = '225') {
     return `<img
         class="logo"
         alt="Generated Image"

@@ -94,7 +94,7 @@ interface FieldProps {
 const Field = ({ label, input }: FieldProps) => {
     return H('div',
         { className: 'field' },
-        H('label', 
+        H('label',
             H('div', {className: 'field-label'}, label),
             H('div', { className: 'field-value' }, input),
         ),
@@ -145,14 +145,17 @@ const markdownOptions: DropdownOption[] = [
 ];
 
 const imageLightOptions: DropdownOption[] = [
-    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg' },
+    { text: 'Breakcold', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_long_ghost_white_bff488efc3.svg' },
+    { text: 'Breakcold Icon Black Fill', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_fill_black_df61362f10.svg?width=173&height=173' },
+    { text: 'Breakcold Icon Blue Fill', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_fill_blue_18d34d7f32.svg?width=173&height=173' },
     { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg' },
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg' },
 ];
 
 const imageDarkOptions: DropdownOption[] = [
-
-    { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg' },
+    { text: 'Breakcold', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_long_ghost_white_bff488efc3.svg' },
+    { text: 'Breakcold Icon White Ghost', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_ghost_white_de5cef994a.svg?width=173&height=173' },
+    { text: 'Breakcold Icon Blue Fill', value: 'https://d1hg221a4vl5iq.cloudfront.net/breakcold_fill_blue_18d34d7f32.svg?width=173&height=173' },
     { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg' },
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
 ];
